@@ -4,6 +4,7 @@ const StyledContainer = styled.main`
   background: ${props => props.theme.mainBg};
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
 `;
 
 export default StyledContainer;

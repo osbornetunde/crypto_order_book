@@ -3,6 +3,8 @@ import styled from "styled-components";
 import Modal from "./Modal";
 import FontAwesomeIcon from "./FontAwesomeIcon";
 import { ReactComponent as Mobile } from "../images/mobile.svg";
+import Main from "../containers/Main";
+import OrderValue from "../containers/OrderValue";
 
 const Dialog = styled.div`
   min-width: 50%;
@@ -37,7 +39,8 @@ function App() {
 
   return (
     <Fragment>
-      <div>Hi</div>
+      <Main />
+      <OrderValue />
       {modal ? (
         <Modal onClose={closeModalHandler}>
           <FontAwesomeIcon text="close" onClick={closeModalHandler} />
