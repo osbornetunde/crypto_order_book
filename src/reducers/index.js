@@ -3,12 +3,14 @@ import pair from "./pair";
 import subscribeValue from "./subscribe";
 import unSubscribeValue from "./unSubscribe";
 import orderData from "./fetchData";
+import stopStream from "./stopStream";
 
 const rootReducer = combineReducers({
   pair,
   subscribeValue,
   unSubscribeValue,
-  orderData
+  orderData,
+  stopStream
 });
 
 export default rootReducer;

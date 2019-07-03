@@ -3,7 +3,8 @@ import styled from "styled-components";
 const StyledButton = styled.button`
   width: 10rem;
   height: 2rem;
-  background-color: rgba(116, 223, 112, 0.9);
+  background-color: ${props =>
+    props.isStop ? props.theme.redBg : "rgba(116, 223, 112, 0.9)"};
   color: #fff;
   border-radius: 0.5rem;
   border: 1px solid #fff;
@@ -11,11 +12,13 @@ const StyledButton = styled.button`
   margin: 0 0.5rem;
 
   &:hover {
-    background-color: rgba(116, 223, 112, 0.3);
+    background-color: ${props =>
+      props.isStopHover ? props.theme.redBgHover : "rgba(116, 223, 112, 0.3)"};
   }
 
   &:focus {
-    background-color: #000639;
+    background-color: ${props =>
+      props.isStopFocus ? props.theme.redBgFocus : "#000639"};
   }
 `;
 
