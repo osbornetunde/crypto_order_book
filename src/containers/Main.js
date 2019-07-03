@@ -5,7 +5,9 @@ import {
   subscribe,
   fetchData,
   unSubscribe,
-  stopStream
+  stopStream,
+  fetchStart,
+  fetchEnd
 } from "../actions/apiAction";
 import StyledSelect from "../components/StyledSelect";
 import StyledMainContainer from "../components/StyledMainContainer";
@@ -20,7 +22,9 @@ const Main = props => {
     unSubscribeValue,
     selectPair,
     fetchData,
-    stopStream
+    stopStream,
+    fetchStart,
+    fetchEnd
   } = props;
   useEffect(() => {
     subscribe(pair);
@@ -32,30 +36,32 @@ const Main = props => {
 
   const setCurrentPair = e => {
     e.preventDefault();
-    console.log("UnSubscribe value: ", unSubscribeValue);
 
     unSubscribe(pair);
-    // stopStream(unSubscribeValue);
     selectPair(e.target.value);
   };
 
   const fetchDataHandler = () => {
+    fetchStart(true);
     if (subscribeValue === undefined) {
       return null;
     }
-    console.log("Subscribe value: ", subscribeValue);
     fetchData(subscribeValue);
   };
 
   const stopStreamHandler = () => {
     unSubscribe(pair);
+    selectPair("");
+    fetchEnd(false);
     return stopStream(unSubscribeValue);
   };
 
   return (
     <StyledMainContainer>
       <StyledSelect value={pair} onChange={setCurrentPair}>
-        <option defaultValue>Select Currency Pair</option>
+        <option value="" hidden>
+          Select Currency Pair
+        </option>
         <option value="bchbtc">BCH/BTC</option>
         <option value="bcheur">BCH/EUR</option>
         <option value="bchusd">BCH/USD</option>
@@ -88,5 +94,13 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { selectPair, subscribe, unSubscribe, fetchData, stopStream }
+  {
+    selectPair,
+    subscribe,
+    unSubscribe,
+    fetchData,
+    stopStream,
+    fetchEnd,
+    fetchStart
+  }
 )(Main);

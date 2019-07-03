@@ -5,5 +5,5 @@ export default handleActions(
   {
     [SELECT_PAIR]: (state, action) => action.payload
   },
-  {}
+  ""
 );

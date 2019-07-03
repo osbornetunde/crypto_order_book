@@ -23,7 +23,7 @@ const StyledSelect = styled.select`
   cursor: pointer;
   border-radius: 0.5rem;
   box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
-
+  text-overflow: ellipsis;
   &:hover {
     border: 1px solid #888;
   }

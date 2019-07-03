@@ -1,6 +1,11 @@
 import { css } from "styled-components";
 
 export const devices = {
+  xsm: (...args) => css`
+    @media (min-width: 300px) {
+      ${css(...args)}
+    }
+  `,
   sm: (...args) => css`
     @media (min-width: 576px) {
       ${css(...args)}

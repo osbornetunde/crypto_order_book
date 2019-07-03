@@ -17,7 +17,7 @@ const StyledModalBackdrop = styled.div`
   display: grid;
   justify-content: center;
   align-items: center;
-  background-color: rgba(103, 196, 98, 0.4);
+  background-color: rgba(103, 196, 98, 0.7);
   z-index: 100;
   &,
   & > * {

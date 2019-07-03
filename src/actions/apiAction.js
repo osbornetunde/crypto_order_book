@@ -3,21 +3,23 @@ import ws from "../api";
 import {
   SUBSCRIBE,
   UNSUBSCRIBE,
-  FETCH_DATA,
-  STOP_STREAM
+  STOP_STREAM,
+  FETCH_START,
+  FETCH_END,
+  FETCH_DATA_RESPONSE
 } from "../constants/actionTypes";
 
-// export const unSubscribe = createAction(UNSUBSCRIBE);
-// export const fetchDataRequest = createAction(FETCH_DATA_REQUEST);
-// export const fetchDataResponse = createAction(FETCH_DATA_RESPONSE);
+export const fetchStart = createAction(FETCH_START);
+export const fetchEnd = createAction(FETCH_END);
 
 export const fetchData = value => {
   return async dispatch => {
     await ws.send(JSON.stringify(value));
     ws.onmessage = event => {
       const response = JSON.parse(event.data);
-      dispatch({ type: FETCH_DATA, payload: response.data });
+      dispatch({ type: FETCH_DATA_RESPONSE, payload: response.data });
     };
+    setTimeout(() => dispatch(fetchEnd(false)), 20000);
   };
 };
 
