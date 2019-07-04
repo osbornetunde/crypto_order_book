@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const StyledButton = styled.button`
-  width: 10rem;
+  width: 6rem;
   height: 2rem;
   background-color: ${props =>
     props.isStop ? props.theme.redBg : "rgba(116, 223, 112, 0.9)"};
@@ -9,7 +9,7 @@ const StyledButton = styled.button`
   border-radius: 0.5rem;
   border: 1px solid #fff;
   outline: 0;
-  margin: 0 0.5rem;
+  margin: 0 0.4rem;
   box-shadow: 1px 2px 2px 2px #ccc;
   transition: all 0.2s linear;
 

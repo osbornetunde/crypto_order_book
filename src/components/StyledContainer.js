@@ -5,7 +5,8 @@ const StyledContainer = styled.main`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  padding: 5rem;
+  padding: 2rem;
+  /* min-width: 100vw; */
 `;
 
 export default StyledContainer;

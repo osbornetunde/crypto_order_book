@@ -17,9 +17,10 @@ const GlobalStyle = createGlobalStyle`
             font-family:'Nunito', sans-serif;
         }
 
-        #root {
+        #root, #modal-root {
             min-height: 100vh;
         }
+
 
 `;
 

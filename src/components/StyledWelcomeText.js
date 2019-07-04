@@ -30,7 +30,7 @@ const jump = keyframes`
 
 const StyledWelcomeText = styled.p`
   font-weight: 400;
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: #fff;
   display: flex;
   justify-content: center;

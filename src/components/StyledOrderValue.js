@@ -9,10 +9,10 @@ const StyledOrderValue = styled.section`
   overflow-y: auto;
   flex: 1 1 0;
   scroll-behavior: smooth;
-  width: 100%;
-  max-height: 100%;
+  /* width: 100%; */
+  /* max-height: 100%; */
   height: calc(100vh - 15rem);
-  padding: 0.5rem 2rem;
+  padding: 0.5rem;
   box-shadow: 1px 1px 2px 2px rgba(116, 223, 112, 0.9) inset;
 
   /* ${devices.md`
