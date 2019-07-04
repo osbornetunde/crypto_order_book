@@ -36,16 +36,16 @@ const Main = props => {
 
   const setCurrentPair = e => {
     e.preventDefault();
-
     unSubscribe(pair);
     selectPair(e.target.value);
+    fetchEnd(false);
   };
 
   const fetchDataHandler = () => {
-    fetchStart(true);
-    if (subscribeValue === undefined) {
+    if (pair === "") {
       return null;
     }
+    fetchStart(true);
     fetchData(subscribeValue);
   };
 
@@ -53,7 +53,7 @@ const Main = props => {
     unSubscribe(pair);
     selectPair("");
     fetchEnd(false);
-    return stopStream(unSubscribeValue);
+    stopStream(unSubscribeValue);
   };
 
   return (

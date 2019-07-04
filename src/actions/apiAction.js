@@ -15,11 +15,26 @@ export const fetchEnd = createAction(FETCH_END);
 export const fetchData = value => {
   return async dispatch => {
     await ws.send(JSON.stringify(value));
+
     ws.onmessage = event => {
       const response = JSON.parse(event.data);
       dispatch({ type: FETCH_DATA_RESPONSE, payload: response.data });
+
+      //   if (Object.keys(response.data).length !== 0) {
+      //     dispatch(fetchEnd(false));
+      //   }
+      //   return null;
     };
-    setTimeout(() => dispatch(fetchEnd(false)), 20000);
+
+    // ws.onerror = () => {
+    //   console.log("error from server");
+    // };
+    // ws.onclose = (event) => {
+    //   // dispatch(fetchEnd(false));
+    //   // setTimeout(() => dispatch(fetchEnd(false)), 20000);
+    //   const response = JSON.parse(event.data);
+    //   dispatch({ type: STOP_STREAM, payload: response.data });
+    // };
   };
 };
 
