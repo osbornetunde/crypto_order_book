@@ -40,17 +40,21 @@ const Main = props => {
     unSubscribe(pair);
     fetchEnd(false);
     selectPair(e.target.value);
-  };
-
-  const fetchDataHandler = () => {
-    stopStream(unSubscribeValue);
-
-    if (pair === "") {
-      return null;
-    }
     fetchStart(true);
-    fetchData(subscribeValue);
   };
+
+  useEffect(() => {
+    const fetchDataHandler = setTimeout(() => {
+      stopStream(unSubscribeValue);
+
+      if (pair === "") {
+        return null;
+      }
+      // fetchStart(true);
+      fetchData(subscribeValue);
+    }, 1000);
+    return () => clearTimeout(fetchDataHandler);
+  }, [fetchData, pair, stopStream, subscribeValue, unSubscribeValue]);
 
   const stopStreamHandler = () => {
     unSubscribe(pair);
@@ -61,11 +65,7 @@ const Main = props => {
 
   return (
     <StyledMainContainer>
-      <StyledSelect
-        value={pair}
-        onChange={setCurrentPair}
-        onClick={setTimeout(fetchDataHandler, 1000)}
-      >
+      <StyledSelect value={pair} onChange={setCurrentPair}>
         <option value="" hidden>
           Select Currency Pair
         </option>
