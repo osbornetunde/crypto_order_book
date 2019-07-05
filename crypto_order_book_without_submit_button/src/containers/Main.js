@@ -27,32 +27,40 @@ const Main = props => {
     fetchEnd
   } = props;
 
+  // useEffect(() => {
+  //   subscribe(pair);
+  // },[pair, subscribe])
+
   useEffect(() => {
-    subscribe(pair);
+    const subscription = setTimeout(() => {
+      subscribe(pair);
+    }, 500);
+    return () => clearTimeout(subscription);
   }, [pair, subscribe]);
 
   useEffect(() => {
-    stopStream(unSubscribeValue);
+    const stoppingStream = setTimeout(() => {
+      stopStream(unSubscribeValue);
+    }, 1000);
+    return () => clearTimeout(stoppingStream);
   }, [pair, stopStream, unSubscribeValue]);
 
   const setCurrentPair = e => {
     e.preventDefault();
     unSubscribe(pair);
     fetchEnd(false);
-    selectPair(e.target.value);
     fetchStart(true);
+    selectPair(e.target.value);
   };
 
   useEffect(() => {
     const fetchDataHandler = setTimeout(() => {
-      stopStream(unSubscribeValue);
-
       if (pair === "") {
         return null;
       }
-      // fetchStart(true);
+
       fetchData(subscribeValue);
-    }, 1000);
+    }, 2000);
     return () => clearTimeout(fetchDataHandler);
   }, [fetchData, pair, stopStream, subscribeValue, unSubscribeValue]);
 

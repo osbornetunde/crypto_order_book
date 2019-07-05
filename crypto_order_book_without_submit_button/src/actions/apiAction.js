@@ -13,28 +13,12 @@ export const fetchStart = createAction(FETCH_START);
 export const fetchEnd = createAction(FETCH_END);
 
 export const fetchData = value => {
-  return async dispatch => {
-    await ws.send(JSON.stringify(value));
-
+  return dispatch => {
+    ws.send(JSON.stringify(value));
     ws.onmessage = event => {
       const response = JSON.parse(event.data);
       dispatch({ type: FETCH_DATA_RESPONSE, payload: response.data });
-
-      // if (Object.keys(response.data).length !== 0) {
-      //   dispatch(fetchEnd(false));
-      // }
-      // return null;
     };
-
-    // ws.onerror = () => {
-    //   console.log("error from server");
-    // };
-    // ws.onclose = (event) => {
-    //   // dispatch(fetchEnd(false));
-    //   // setTimeout(() => dispatch(fetchEnd(false)), 20000);
-    //   const response = JSON.parse(event.data);
-    //   dispatch({ type: STOP_STREAM, payload: response.data });
-    // };
   };
 };
 
@@ -65,10 +49,5 @@ export const stopStream = value => {
       const response = JSON.parse(event.data);
       dispatch({ type: STOP_STREAM, payload: response.data });
     };
-    // ws.onclose = event => {
-    //   console.log("connection closed");
-    //   const response = JSON.parse(event.data);
-    //   dispatch({ type: STOP_STREAM, payload: response.data });
-    // };
   };
 };

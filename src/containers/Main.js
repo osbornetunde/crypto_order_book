@@ -26,12 +26,19 @@ const Main = props => {
     fetchStart,
     fetchEnd
   } = props;
+
   useEffect(() => {
-    subscribe(pair);
+    const subscription = setTimeout(() => {
+      subscribe(pair);
+    }, 1000);
+    return () => clearTimeout(subscription);
   }, [pair, subscribe]);
 
   useEffect(() => {
-    stopStream(unSubscribeValue);
+    const stoppingStream = setTimeout(() => {
+      stopStream(unSubscribeValue);
+    }, 1000);
+    return () => clearTimeout(stoppingStream);
   }, [pair, stopStream, unSubscribeValue]);
 
   const setCurrentPair = e => {
