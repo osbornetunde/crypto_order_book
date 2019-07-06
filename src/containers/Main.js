@@ -31,21 +31,28 @@ const Main = props => {
     const subscription = setTimeout(() => {
       subscribe(pair);
     }, 1000);
+    fetchEnd(false);
     return () => clearTimeout(subscription);
-  }, [pair, subscribe]);
+  }, [fetchEnd, pair, subscribe]);
 
   useEffect(() => {
-    const stoppingStream = setTimeout(() => {
-      stopStream(unSubscribeValue);
-    }, 1000);
-    return () => clearTimeout(stoppingStream);
+    if (pair === "") {
+      return undefined;
+    }
+    stopStream(unSubscribeValue);
   }, [pair, stopStream, unSubscribeValue]);
+
+  // useEffect(() => {
+  //   const stoppingStream = setTimeout(() => {
+  //     stopStream(unSubscribeValue);
+  //   }, 500);
+  //   return () => clearTimeout(stoppingStream);
+  // }, [pair, stopStream, unSubscribeValue]);
 
   const setCurrentPair = e => {
     e.preventDefault();
     unSubscribe(pair);
     selectPair(e.target.value);
-    fetchEnd(false);
   };
 
   const fetchDataHandler = () => {

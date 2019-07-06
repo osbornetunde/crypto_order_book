@@ -27,10 +27,6 @@ const Main = props => {
     fetchEnd
   } = props;
 
-  // useEffect(() => {
-  //   subscribe(pair);
-  // },[pair, subscribe])
-
   useEffect(() => {
     const subscription = setTimeout(() => {
       subscribe(pair);
@@ -38,22 +34,29 @@ const Main = props => {
     return () => clearTimeout(subscription);
   }, [pair, subscribe]);
 
-  useEffect(() => {
-    const stoppingStream = setTimeout(() => {
-      stopStream(unSubscribeValue);
-    }, 1000);
-    return () => clearTimeout(stoppingStream);
-  }, [pair, stopStream, unSubscribeValue]);
+  // useEffect(() => {
+  //   const stoppingStream = setTimeout(() => {
+  //     stopStream(unSubscribeValue);
+  //   }, 1000);
+
+  //   return () => clearTimeout(stoppingStream);
+  // }, [pair, stopStream, unSubscribeValue]);
 
   const setCurrentPair = e => {
     e.preventDefault();
-    unSubscribe(pair);
-    fetchEnd(false);
-    fetchStart(true);
     selectPair(e.target.value);
+    fetchEnd(false);
+    unSubscribe(pair);
+    fetchStart(true);
   };
 
   useEffect(() => {
+    if (pair === "") {
+      return undefined;
+    } else {
+      stopStream(unSubscribeValue);
+    }
+
     const fetchDataHandler = setTimeout(() => {
       if (pair === "") {
         return null;
@@ -62,7 +65,7 @@ const Main = props => {
       fetchData(subscribeValue);
     }, 2000);
     return () => clearTimeout(fetchDataHandler);
-  }, [fetchData, pair, stopStream, subscribeValue, unSubscribeValue]);
+  }, [fetchData, fetchEnd, pair, stopStream, subscribeValue, unSubscribeValue]);
 
   const stopStreamHandler = () => {
     unSubscribe(pair);
