@@ -34,13 +34,13 @@ const Main = props => {
     return () => clearTimeout(subscription);
   }, [pair, subscribe]);
 
-  // useEffect(() => {
-  //   const stoppingStream = setTimeout(() => {
-  //     stopStream(unSubscribeValue);
-  //   }, 1000);
+  useEffect(() => {
+    const stoppingStream = setTimeout(() => {
+      stopStream(unSubscribeValue);
+    }, 1000);
 
-  //   return () => clearTimeout(stoppingStream);
-  // }, [pair, stopStream, unSubscribeValue]);
+    return () => clearTimeout(stoppingStream);
+  }, [pair, stopStream, unSubscribeValue]);
 
   const setCurrentPair = e => {
     e.preventDefault();

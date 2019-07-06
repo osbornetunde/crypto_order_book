@@ -42,12 +42,12 @@ const Main = props => {
     stopStream(unSubscribeValue);
   }, [pair, stopStream, unSubscribeValue]);
 
-  // useEffect(() => {
-  //   const stoppingStream = setTimeout(() => {
-  //     stopStream(unSubscribeValue);
-  //   }, 500);
-  //   return () => clearTimeout(stoppingStream);
-  // }, [pair, stopStream, unSubscribeValue]);
+  useEffect(() => {
+    const stoppingStream = setTimeout(() => {
+      stopStream(unSubscribeValue);
+    }, 500);
+    return () => clearTimeout(stoppingStream);
+  }, [pair, stopStream, unSubscribeValue]);
 
   const setCurrentPair = e => {
     e.preventDefault();
