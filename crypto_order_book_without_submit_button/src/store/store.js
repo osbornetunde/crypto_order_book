@@ -1,13 +1,5 @@
-import { createStore, applyMiddleware, compose } from "redux";
-import logger from "redux-logger";
-import thunk from "redux-thunk";
-import rootReducer from "../reducers";
-
-const initialState = {};
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-export const store = createStore(
-  rootReducer,
-  initialState,
-  composeEnhancers(applyMiddleware(thunk, logger))
-);
+if (process.env.NODE_ENV === "production") {
+  module.exports = require("./store.prod");
+} else {
+  module.exports = require("./store.dev");
+}
