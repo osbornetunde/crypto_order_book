@@ -7,23 +7,16 @@ import StyledOrderValueHeader from "../components/StyledOrderValueHeader";
 import StyledLoader from "../components/StyledLoader";
 
 const OrderValue = props => {
-  const renderAsks = () => {
-    return props.orderData.asks.map((ask, index) => {
+  const {
+    orderData: { bids, asks }
+  } = props;
+
+  const renderPrices = prices => {
+    return prices.map((price, index) => {
       return (
         <StyledList key={index}>
-          {`${ask[1]}   ${props.pair.slice(-6, 3).toUpperCase()} @ ${
-            ask[0]
-          }  ${props.pair.slice(3).toUpperCase()}`}{" "}
-        </StyledList>
-      );
-    });
-  };
-  const renderBids = () => {
-    return props.orderData.bids.map((bid, index) => {
-      return (
-        <StyledList key={index}>
-          {`${bid[1]}   ${props.pair.slice(-6, 3).toUpperCase()} @ ${
-            bid[0]
+          {`${price[1]}   ${props.pair.slice(-6, 3).toUpperCase()} @ ${
+            price[0]
           }  ${props.pair.slice(3).toUpperCase()}`}{" "}
         </StyledList>
       );
@@ -58,11 +51,11 @@ const OrderValue = props => {
       <StyledOrderValue>
         <StyledOrderedList>
           <StyledOrderValueHeader>Bids</StyledOrderValueHeader>
-          {renderBids()}
+          {renderPrices(bids)}
         </StyledOrderedList>
         <StyledOrderedList>
           <StyledOrderValueHeader>Asks</StyledOrderValueHeader>
-          {renderAsks()}
+          {renderPrices(asks)}
         </StyledOrderedList>
       </StyledOrderValue>
     );
