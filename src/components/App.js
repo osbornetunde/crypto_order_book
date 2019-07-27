@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect, useCallback } from "react";
 import Modal from "./Modal";
 import FontAwesomeIcon from "./FontAwesomeIcon";
-import { ReactComponent as Mobile } from "../images/mobile.svg";
+import { ReactComponent as Mobile } from "../images/mobiles.svg";
 import Main from "../containers/Main";
 import OrderValue from "../containers/OrderValue";
 import StyledDialog from "./StyledDialog";
