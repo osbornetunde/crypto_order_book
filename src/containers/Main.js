@@ -72,7 +72,11 @@ const Main = props => {
 
   return (
     <StyledMainContainer>
-      <StyledSelect value={pair} onChange={setCurrentPair}>
+      <StyledSelect
+        value={pair}
+        onChange={setCurrentPair}
+        aria-label="select pairs"
+      >
         <option value="" hidden>
           Select Currency Pair
         </option>
