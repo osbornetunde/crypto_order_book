@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`root component expect root to render 1`] = `ShallowWrapper {}`;
